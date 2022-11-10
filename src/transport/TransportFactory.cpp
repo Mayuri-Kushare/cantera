@@ -14,6 +14,8 @@
 #include "cantera/transport/TransportFactory.h"
 #include "cantera/base/stringUtils.h"
 #include "cantera/base/utilities.h"
+#include "cantera/transport/IdealCondensedTransport.h"
+
 
 using namespace std;
 
@@ -44,6 +46,7 @@ TransportFactory::TransportFactory()
     addAlias("multicomponent-CK", "CK_Multi");
     reg("ionized-gas", []() { return new IonGasTransport(); });
     addAlias("ionized-gas", "Ion");
+    reg("ideal-condensed", []() { return new IdealCondensedTransport(); });
     reg("water", []() { return new WaterTransport(); });
     addAlias("water", "Water");
     reg("high-pressure", []() { return new HighPressureGasTransport(); });

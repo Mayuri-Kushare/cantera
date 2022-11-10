@@ -189,6 +189,11 @@ void setupGasTransportData(GasTransportData& tr, const AnyMap& node)
 
     tr.input = node;
 }
+/*IdealCondensedTransportData::IdealCondensedTransportData(
+        double diffusion_coefficient_)
+    : diffusion_coefficient(diffusion_coefficient_)
+{
+}*/
 
 unique_ptr<TransportData> newTransportData(const AnyMap& node)
 {

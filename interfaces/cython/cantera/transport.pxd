@@ -30,6 +30,11 @@ cdef extern from "cantera/transport/DustyGasTransport.h" namespace "Cantera":
         void getMolarFluxes(double*, double*, double, double*) except +translate_exception
         CxxTransport& gasTransport() except +translate_exception
 
+cdef extern from "cantera/transport/IdealCondensedTransport.h" namespace "Cantera":
+    cdef cppclass CxxIdealCondensedTransport "Cantera::IdealCondensedTransport":
+        
+        DiffusionCoeff(double) except +translate_exception
+        CxxTransport() except +translate_exception
 
 cdef extern from "cantera/transport/TransportData.h" namespace "Cantera":
     cdef cppclass CxxTransportData "Cantera::TransportData":
@@ -52,6 +57,12 @@ cdef extern from "cantera/transport/TransportData.h" namespace "Cantera":
         double dispersion_coefficient
         double quadrupole_polarizability
 
+    cdef cppclass CxxIdealCondensedTransportData "Cantera::IdealCondensedTransport" (CxxTransportData):
+        CxxIdealCondensedTransportData()
+        CxxIdealCondensedTransportData(double)
+       
+        double diffusion_coefficient
+        
 
 cdef extern from "cantera/cython/transport_utils.h":
     cdef void tran_getMixDiffCoeffs(CxxTransport*, double*) except +translate_exception
@@ -78,10 +89,18 @@ cdef class GasTransportData:
     cdef CxxGasTransportData* data
     cdef _assign(self, shared_ptr[CxxTransportData] other)
 
+cdef class IdealCondensedTransportData:
+    cdef shared_ptr[CxxTransportData] _data
+    cdef CxxIdealCondensedTransportData* data
+    cdef _assign(self, shared_ptr[CxxTransportData] other)
+
 cdef class Transport(_SolutionBase):
      pass
 
 cdef class DustyGasTransport(Transport):
+     pass
+
+cdef class IdealCondensedTransport(Transport):
      pass
 
 cdef np.ndarray get_transport_1d(Transport tran, transportMethod1d method)

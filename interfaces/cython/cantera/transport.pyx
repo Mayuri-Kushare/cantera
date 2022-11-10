@@ -109,7 +109,7 @@ cdef class GasTransportData:
             self.data.geometry = stringify(geometry)
 
     property diameter:
-        """ Get/Set the Lennard-Jones collision diameter [m] """
+        """ Get/Set the Lennard-Jones collision diameter [m] ""
         def __get__(self):
             return self.data.diameter
         def __set__(self, diameter):
@@ -275,6 +275,14 @@ cdef class Transport(_SolutionBase):
         """
         def __get__(self):
             return get_transport_1d(self, tran_getMobilities)
+    
+    property diffusion_coeffs:
+        """
+        Diffusion coefficient. [m^2/s]
+        """
+        def __get__(self):
+            return get_transport_1d(self, tran_getDiffusionCoeffs)
+
 
     def get_viscosity_polynomial(self, i):
         """Get the polynomial fit to the logarithm of temperature for
@@ -452,3 +460,21 @@ cdef class DustyGasTransport(Transport):
         (<CxxDustyGasTransport*>self.transport).getMolarFluxes(&state1[0],
             &state2[0], delta, &fluxes[0])
         return fluxes
+
+cdef class IdealCondensedTransport(Transport):
+    """
+    Implements the "ideal-condensed" model for transport in solid solution.
+
+    As implemented here, only species transport (`~Transport.diff_coeffs`)
+    is handled. The viscosity, thermal conductivity, and thermal diffusion
+    coefficients are not implemented.
+    """
+    def __init__(self, *args, **kwargs):
+        self.base.setTransport(newTransport(self.thermo, stringify("ideal-condensed")))
+        self.transport = self.base.transport().get()
+        super().__init__(*args, **kwargs)
+
+    property diffusion_coefficient:
+        """Diffusion coefficient of the solid state [m^2/s]."""
+        def __set__(self, value):
+            (<CxxIdealCondensedTransport*>self.transport).DiffusionCoeff()
