@@ -102,7 +102,7 @@ public:
     double quadrupole_polarizability;
 };
 
-/*class IdealCondensedTransportData : public TransportData
+class IdealCondensedTransportData : public TransportData
 {
 public:
     IdealCondensedTransportData();
@@ -112,7 +112,7 @@ public:
 
    double diffusion_coefficient;
 
-};*/
+};
 
 //! Create a new TransportData object from an AnyMap specification
 unique_ptr<TransportData> newTransportData(const AnyMap& node);

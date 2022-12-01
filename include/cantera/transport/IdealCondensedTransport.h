@@ -5,8 +5,8 @@
 // This file is part of Cantera. See License.txt in the top-level directory or
 // at https://cantera.org/license.txt for license and copyright information.
 
-#ifndef CT_WATERTRAN_H
-#define CT_WATERTRAN_H
+#ifndef CT_IDEALCONDENSEDTRAN_H
+#define CT_IDEALCONDENSEDTRAN_H
 
 //#include "cantera/thermo/WaterPropsIAPWS.h"
 #include "cantera/transport/Transport.h"
@@ -34,7 +34,7 @@ public:
     }
 
     
-    virtual double DiffusionCoeff();
+    virtual double diffusion_coefficient();
 
     // virtual void init(ThermoPhase* thermo, int mode);
 };

@@ -4,9 +4,11 @@
 // at https://cantera.org/license.txt for license and copyright information.
 
 #include "cantera/transport/IdealCondensedTransport.h"
-//#include "cantera/thermo/IdealSolidSolnPhase.h"
-
-
+#include "cantera/thermo/IdealSolidSolnPhase.h"
+#include "cantera/transport/TransportData.h"
+#include "cantera/base/stringUtils.h"
+#include "cantera/base/utilities.h"
+#include "cantera/base/global.h"
 
 
 namespace Cantera
@@ -16,7 +18,7 @@ IdealCondensedTransport::IdealCondensedTransport(ThermoPhase* thermo, int ndim) 
     Transport(thermo, ndim)
 {
     if (thermo) {
-        // init(thermo);
+        init(thermo);
     }
 }
 
@@ -32,9 +34,12 @@ namespace {
 const double D_k = 647.27; 
 
 }
-double IdealCondensedTransport::DiffusionCoeff()
+double IdealCondensedTransport::diffusion_coefficient()
 {
   
+    // diff_coef = 1E-6*D_k;
+    // return diff_coef;
+
     return D_k;
 }
 

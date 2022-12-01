@@ -33,7 +33,7 @@ cdef extern from "cantera/transport/DustyGasTransport.h" namespace "Cantera":
 cdef extern from "cantera/transport/IdealCondensedTransport.h" namespace "Cantera":
     cdef cppclass CxxIdealCondensedTransport "Cantera::IdealCondensedTransport":
         
-        DiffusionCoeff(double) except +translate_exception
+        double diffusion_coefficient() except +translate_exception
         CxxTransport() except +translate_exception
 
 cdef extern from "cantera/transport/TransportData.h" namespace "Cantera":
@@ -59,7 +59,7 @@ cdef extern from "cantera/transport/TransportData.h" namespace "Cantera":
 
     cdef cppclass CxxIdealCondensedTransportData "Cantera::IdealCondensedTransport" (CxxTransportData):
         CxxIdealCondensedTransportData()
-        CxxIdealCondensedTransportData(double)
+        CxxIdealCondensedTransportData()
        
         double diffusion_coefficient
         
@@ -89,10 +89,6 @@ cdef class GasTransportData:
     cdef CxxGasTransportData* data
     cdef _assign(self, shared_ptr[CxxTransportData] other)
 
-cdef class IdealCondensedTransportData:
-    cdef shared_ptr[CxxTransportData] _data
-    cdef CxxIdealCondensedTransportData* data
-    cdef _assign(self, shared_ptr[CxxTransportData] other)
 
 cdef class Transport(_SolutionBase):
      pass

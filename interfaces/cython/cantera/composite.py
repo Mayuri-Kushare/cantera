@@ -474,7 +474,7 @@ class SolutionArray:
         # From Kinetics
         'heat_release_rate',
         # From Transport
-        'viscosity', 'electrical_conductivity', 'thermal_conductivity',
+        'viscosity', 'electrical_conductivity', 'thermal_conductivity'
     ]
     _strings = ['phase_of_matter']
     _n_species = [
