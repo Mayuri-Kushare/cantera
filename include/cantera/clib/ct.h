@@ -142,6 +142,7 @@ extern "C" {
     CANTERA_CAPI int trans_new(const char* model, int th, int loglevel);
     CANTERA_CAPI int trans_del(int n);
     CANTERA_CAPI double trans_viscosity(int n);
+    CANTERA_CAPI double trans_diffusion_coefficient(int n);
     CANTERA_CAPI double trans_electricalConductivity(int n);
     CANTERA_CAPI double trans_thermalConductivity(int n);
     CANTERA_CAPI int trans_getThermalDiffCoeffs(int n, int ldt, double* dt);

@@ -59,8 +59,7 @@ cdef extern from "cantera/transport/TransportData.h" namespace "Cantera":
 
     cdef cppclass CxxIdealCondensedTransportData "Cantera::IdealCondensedTransport" (CxxTransportData):
         CxxIdealCondensedTransportData()
-        CxxIdealCondensedTransportData()
-       
+
         double diffusion_coefficient
         
 

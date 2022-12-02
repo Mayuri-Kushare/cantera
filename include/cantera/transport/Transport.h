@@ -217,7 +217,10 @@ public:
         throw NotImplementedError("Transport::viscosity",
             "Not implemented for transport model '{}'.", transportModel());
     }
-
+    virtual double diffusion_coefficient() {
+        throw NotImplementedError("Transport::diffusion_coefficient",
+            "Not implemented for transport model '{}'.", transportModel());
+    }
     //! Returns the pure species viscosities
     /*!
      * The units are Pa-s and the length is the number of species

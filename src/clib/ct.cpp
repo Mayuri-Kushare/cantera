@@ -1534,4 +1534,12 @@ extern "C" {
             return handleAllExceptions(-1, ERR);
         }
     }
+    double trans_diffusion_coefficient(int n)
+    {
+        try {
+            return TransportCabinet::item(n).diffusion_coefficient();
+        } catch (...) {
+            return handleAllExceptions(-1, ERR);
+        }
+    }
 }

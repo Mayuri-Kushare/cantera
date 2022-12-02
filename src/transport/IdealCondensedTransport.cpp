@@ -15,17 +15,17 @@ namespace Cantera
 {
 
 IdealCondensedTransport::IdealCondensedTransport(ThermoPhase* thermo, int ndim) :
-    Transport(thermo, ndim)
+    Transport(thermo,ndim)
 {
     if (thermo) {
         init(thermo);
     }
 }
 
-/*void IdealCondensedTransport::init(ThermoPhase* thermo, int mode =1 )
+void IdealCondensedTransport::init(ThermoPhase* thermo, int mode, int log_level)
 {
     m_thermo = thermo;
-} */
+} 
 
 using namespace std;
 

@@ -10,7 +10,7 @@
 
 //#include "cantera/thermo/WaterPropsIAPWS.h"
 #include "cantera/transport/Transport.h"
-#include "cantera/thermo/IdealSolidSolnPhase.h"
+
 
 namespace Cantera
 {
@@ -33,10 +33,8 @@ public:
         return "ideal-condensed";
     }
 
-    
+    virtual void init(ThermoPhase* thermo, int mode=0, int log_level=0);
     virtual double diffusion_coefficient();
-
-    // virtual void init(ThermoPhase* thermo, int mode);
 };
 }
 #endif
