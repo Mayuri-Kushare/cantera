@@ -487,7 +487,7 @@ class SolutionArray:
         'standard_cp_R', 'activities', 'activity_coefficients',
         # From Transport
         'mix_diff_coeffs', 'mix_diff_coeffs_mass', 'mix_diff_coeffs_mole',
-        'thermal_diff_coeffs', 'mobilities', 'species_viscosities', 'diffusion_coefficient'
+        'thermal_diff_coeffs', 'mobilities', 'species_viscosities', 
     ]
 
     # From Kinetics (differs from Solution.n_species for Interface phases)

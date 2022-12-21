@@ -223,7 +223,7 @@ cdef class Transport(_SolutionBase):
         """
         def __get__(self):
             return self.transport.thermalConductivity()
-
+  
     property mix_diff_coeffs:
         """
         Mixture-averaged diffusion coefficients [m^2/s] relating the
@@ -275,6 +275,11 @@ cdef class Transport(_SolutionBase):
         """
         def __get__(self):
             return get_transport_1d(self, tran_getMobilities)
+            
+    property diffusion_coefficient:
+        """Diffusion coefficient of the ideal solid solution [m^2/s]."""
+        def __get__(self):
+            return (<CxxIdealCondensedTransport*>self.transport).diffusion_coefficient()
 
     def get_viscosity_polynomial(self, i):
         """Get the polynomial fit to the logarithm of temperature for
@@ -469,4 +474,4 @@ cdef class IdealCondensedTransport(Transport):
     property diffusion_coefficient:
         """Diffusion coefficient of the ideal solid solution [m^2/s]."""
         def __get__(self):
-            (<CxxIdealCondensedTransport*>self.transport).diffusion_coefficient()
+            return (<CxxIdealCondensedTransport*>self.transport).diffusion_coefficient()

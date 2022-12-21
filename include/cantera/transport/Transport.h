@@ -218,7 +218,7 @@ public:
             "Not implemented for transport model '{}'.", transportModel());
     }
     virtual double diffusion_coefficient() {
-        throw NotImplementedError("Transport::diffusion_coefficient",
+        throw NotImplementedError("Transport::diffusion_coefficient()",
             "Not implemented for transport model '{}'.", transportModel());
     }
     //! Returns the pure species viscosities

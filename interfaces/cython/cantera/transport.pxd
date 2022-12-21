@@ -14,6 +14,7 @@ cdef extern from "cantera/transport/Transport.h" namespace "Cantera":
         cbool CKMode() except +translate_exception
         double viscosity() except +translate_exception
         double thermalConductivity() except +translate_exception
+        double diffusion_coefficient() except +translate_exception
         double electricalConductivity() except +translate_exception
         void getSpeciesViscosities(double*) except +translate_exception
         void getCollisionIntegralPolynomial(size_t i, size_t j, double* dataA, double* dataB, double* dataC) except +translate_exception
@@ -56,11 +57,6 @@ cdef extern from "cantera/transport/TransportData.h" namespace "Cantera":
         double acentric_factor
         double dispersion_coefficient
         double quadrupole_polarizability
-
-    cdef cppclass CxxIdealCondensedTransportData "Cantera::IdealCondensedTransport" (CxxTransportData):
-        CxxIdealCondensedTransportData()
-
-        double diffusion_coefficient
         
 
 cdef extern from "cantera/cython/transport_utils.h":
@@ -87,8 +83,6 @@ cdef class GasTransportData:
     cdef shared_ptr[CxxTransportData] _data
     cdef CxxGasTransportData* data
     cdef _assign(self, shared_ptr[CxxTransportData] other)
-
-
 cdef class Transport(_SolutionBase):
      pass
 
